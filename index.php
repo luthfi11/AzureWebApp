@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="Luthfi Alfarisi">
 
     <title>Azure Web App</title>
 
@@ -48,11 +48,35 @@
             </div>
            
             <div class="form-group"> 
-                <button type="submit" class="btn btn-primary">Register</button>
+                <button type="submit" name="register" class="btn btn-primary">Register</button>
             </div>
             
           </form>
         </div>
+        
+        <?php
+            include ("connection.php");
+            if (isset($_POST['register'])) {
+            try {
+                $name = $_POST['name'];
+                $email = $_POST['email'];
+                $job = $_POST['job'];
+                $date = date("Y-m-d");
+                
+                $insert_query = "INSERT INTO Persons (fullname, email, _job, _date) 
+                VALUES (?,?,?,?)";
+                $stmt = $conn->prepare($sql_insert);
+                $stmt->bindValue(1, $name);
+                $stmt->bindValue(2, $email);
+                $stmt->bindValue(3, $job);
+                $stmt->bindValue(4, $date);
+                $stmt->execute();
+                
+            } catch(Exception $e) {
+                echo "Error: " . $e;
+            }
+        }
+        ?>
         
         <div class="col-md-offset-2 col-md-8" align="center">
           <br>
@@ -72,14 +96,14 @@
             <tbody>
               <?php
                   try {
-                      include ("connection.php");
                       $getdata = "SELECT * FROM Persons";
                       $stmt = $conn->query($getdata);
                       $data = $stmt->fetchAll(); 
                       if(count($data) > 0) {
-                          
+                          $i = 1;
                           foreach($data as $person) {
-                              echo "<tr><td>".$person['fullname']."</td>";
+                              echo "<tr><td>".$i++."</td>";
+                              echo "<td>".$person['fullname']."</td>";
                               echo "<td>".$person['email']."</td>";
                               echo "<td>".$person['_job']."</td>";
                               echo "<td>".$person['_date']."</td></tr>";
