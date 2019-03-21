@@ -54,11 +54,6 @@
           </form>
         </div>
         
-        <?php
-            
-        }
-        ?>
-        
         <div class="col-md-offset-2 col-md-8" align="center">
           <br>
           <h3>Visitor History</h3>
