@@ -115,7 +115,7 @@
             $stmt->bindValue(3, $job);
             $stmt->bindValue(4, $date);
             $stmt->execute();
-            header("index.php");
+            echo "<meta http-equiv='refresh' content='0'>";
         } catch(Exception $e) {
             echo "Error: " . $e;
         }
