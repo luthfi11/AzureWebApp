@@ -55,26 +55,7 @@
         </div>
         
         <?php
-            include ("connection.php");
-            if (isset($_POST['register'])) {
-            try {
-                $name = $_POST['name'];
-                $email = $_POST['email'];
-                $job = $_POST['job'];
-                $date = date("Y-m-d");
-                
-                $insert_query = "INSERT INTO Persons (fullname, email, _job, _date) 
-                VALUES (?,?,?,?)";
-                $stmt = $conn->prepare($insert_query);
-                $stmt->bindValue(1, $name);
-                $stmt->bindValue(2, $email);
-                $stmt->bindValue(3, $job);
-                $stmt->bindValue(4, $date);
-                $stmt->execute();
-                
-            } catch(Exception $e) {
-                echo "Error: " . $e;
-            }
+            
         }
         ?>
         
@@ -95,6 +76,7 @@
             
             <tbody>
               <?php
+                  include ("connection.php");
                   try {
                       $getdata = "SELECT * FROM Persons";
                       $stmt = $conn->query($getdata);
@@ -122,5 +104,27 @@
         </div>
     </div>
 
+  <?php
+      if (isset($_POST['register'])) {
+        try {
+            $name = $_POST['name'];
+            $email = $_POST['email'];
+            $job = $_POST['job'];
+            $date = date("Y-m-d");
+            
+            $insert_query = "INSERT INTO Persons (fullname, email, _job, _date) 
+            VALUES (?,?,?,?)";
+            $stmt = $conn->prepare($insert_query);
+            $stmt->bindValue(1, $name);
+            $stmt->bindValue(2, $email);
+            $stmt->bindValue(3, $job);
+            $stmt->bindValue(4, $date);
+            $stmt->execute();
+            
+        } catch(Exception $e) {
+            echo "Error: " . $e;
+        }
+      }
+  ?>
   </body>
 </html>
