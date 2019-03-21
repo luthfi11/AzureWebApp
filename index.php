@@ -65,7 +65,7 @@
                 
                 $insert_query = "INSERT INTO Persons (fullname, email, _job, _date) 
                 VALUES (?,?,?,?)";
-                $stmt = $conn->prepare($sql_insert);
+                $stmt = $conn->prepare($insert_query);
                 $stmt->bindValue(1, $name);
                 $stmt->bindValue(2, $email);
                 $stmt->bindValue(3, $job);
@@ -116,11 +116,7 @@
                       echo "Error : " . $e;
                   }
               ?>
-              <tr>
-                <td>
-                  
-                </td>
-              </tr>
+              
             </tbody>
           </table>
         </div>
