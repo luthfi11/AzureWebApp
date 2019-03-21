@@ -87,7 +87,7 @@
                           }
                           
                       } else {
-                          echo "<tr><td colspan=5>Data Empty</td></tr>";
+                          echo "<tr><td colspan=5 align=center>Data Empty</td></tr>";
                       }
                   } catch(Exception $e) {
                       echo "Error : " . $e;
