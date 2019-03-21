@@ -115,7 +115,7 @@
             $stmt->bindValue(3, $job);
             $stmt->bindValue(4, $date);
             $stmt->execute();
-            
+            header("index.php");
         } catch(Exception $e) {
             echo "Error: " . $e;
         }
